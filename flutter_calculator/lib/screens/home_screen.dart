@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/widgets/custom_button.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:provider/provider.dart';
+import '../Theme/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -65,8 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text(
           'Calculator',
         ),
+        actions: [
+          IconButton(
+              onPressed: () => {
+                    Provider.of<ThemeProvider>(context, listen: false)
+                        .toggleTheme()
+                  },
+              icon: const Icon(Icons.light_mode))
+        ],
       ),
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -111,9 +121,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (index == 0) {
                   return CustomButton(
                     buttonText: buttons[index],
-                    btColor: Theme.of(context).primaryColor,
+                    btColor: Theme.of(context).colorScheme.surface,
                     btTextColor: Colors.orange,
-                    btSecondaryColor: Theme.of(context).primaryColor,
+                    btSecondaryColor: Theme.of(context).colorScheme.surface,
                     onPressed: () {
                       setState(() {
                         enteredNumber = '';
@@ -124,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (index == 1) {
                   return CustomButton(
                     buttonText: buttons[index],
-                    btColor: Theme.of(context).primaryColor,
+                    btColor: Theme.of(context).colorScheme.surface,
                     btTextColor: Colors.black,
                     btSecondaryColor: Colors.grey.shade300,
                     onPressed: () {
@@ -139,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (index == 2) {
                   return CustomButton(
                     buttonText: buttons[index],
-                    btColor: Theme.of(context).primaryColor,
+                    btColor: Theme.of(context).colorScheme.surface,
                     btTextColor: Colors.black,
                     btSecondaryColor: Colors.grey.shade300,
                     onPressed: () {
@@ -154,9 +164,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else if (index == 16) {
                   return CustomButton(
                     buttonText: buttons[index],
-                    btColor: Theme.of(context).primaryColor,
+                    btColor: Theme.of(context).colorScheme.surface,
                     btTextColor: Colors.black,
-                    btSecondaryColor: Theme.of(context).primaryColor,
+                    btSecondaryColor: Theme.of(context).colorScheme.surface,
                     onPressed: () {},
                   );
                 } else if (index == 19) {
@@ -174,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else {
                   return CustomButton(
                     buttonText: buttons[index],
-                    btColor: Theme.of(context).primaryColor,
+                    btColor: Theme.of(context).colorScheme.surface,
                     btTextColor: isOperator(buttons[index])
                         ? Colors.white
                         : Colors.black,
